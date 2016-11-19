@@ -82,9 +82,9 @@ AdminAsset::register($this);
                         </a>
                     </li>
                     <li>
-                        <a href="<?= Url::to(['manufacturer/']) ?>">
-                            <i class="fa fa-glass" aria-hidden="true"></i>
-                            <p>Производители</p>
+                        <a href="<?= Url::to(['spot/']) ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <p>Пункты выдачи</p>
                         </a>
                     </li>
                     <li>
