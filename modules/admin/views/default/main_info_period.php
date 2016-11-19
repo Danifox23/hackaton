@@ -15,7 +15,7 @@ use yii\helpers\Url;
                 </div>
                 <div class="col-xs-7">
                     <div class="numbers">
-                        <p>Товары</p>
+                        <p>Пожертвований</p>
                         <span><?= count($products) ?></span>
                     </div>
                 </div>
@@ -23,9 +23,10 @@ use yii\helpers\Url;
             <div class="footer">
                 <hr>
                 <div class="card-link">
-                    <i class="fa fa-external-link" aria-hidden="true"></i><a href="<?= Url::to(['product/']) ?>"
-                                                                             class="text-muted-low">Перейти в
-                        продукты</a>
+                    <i class="fa fa-external-link" aria-hidden="true"></i><a
+                        href="<?= Url::to(['bid/']) ?>"
+                        class="text-muted-low">Перейти в
+                        заказы</a>
                 </div>
             </div>
         </div>
@@ -43,17 +44,18 @@ use yii\helpers\Url;
                 </div>
                 <div class="col-xs-7">
                     <div class="numbers">
-                        <p>Заказы</p>
-                        <span><?= count($orders) ?></span>
+                        <p>Выполненных заявок</p>
+                        <span><?= count($complete) ?></span>
                     </div>
                 </div>
             </div>
             <div class="footer">
                 <hr>
                 <div class="card-link">
-                    <i class="fa fa-external-link" aria-hidden="true"></i><a href="<?= Url::to(['order/']) ?>"
-                                                                             class="text-muted-low">Перейти в
-                        заказы</a>
+                    <i class="fa fa-external-link" aria-hidden="true"></i><a
+                        href="<?= Url::to(['bid/']) ?>"
+                        class="text-muted-low">Перейти в
+                        заявки</a>
                 </div>
             </div>
         </div>
@@ -71,17 +73,18 @@ use yii\helpers\Url;
                 </div>
                 <div class="col-xs-7">
                     <div class="numbers">
-                        <p>Пользователи</p>
-                        <span><?= count($users) ?></span>
+                        <p>Волонтёров</p>
+                        <span><?= count($vol) ?></span>
                     </div>
                 </div>
             </div>
             <div class="footer">
                 <hr>
                 <div class="card-link">
-                    <i class="fa fa-external-link" aria-hidden="true"></i><a href="<?= Url::to(['order/']) ?>"
-                                                                             class="text-muted-low">Перейти в
-                        пользователи</a>
+                    <i class="fa fa-external-link" aria-hidden="true"></i><a
+                        href="<?= Url::to(['volunteer/']) ?>"
+                        class="text-muted-low">Перейти в
+                        волонтёры</a>
                 </div>
             </div>
         </div>
@@ -99,8 +102,8 @@ use yii\helpers\Url;
                 </div>
                 <div class="col-xs-7">
                     <div class="numbers">
-                        <p>Блог</p>
-                        <span><?= count($blog) ?></span>
+                        <p>Заведения</p>
+                        <span><?= count($rest) ?></span>
                     </div>
                 </div>
             </div>
@@ -108,9 +111,9 @@ use yii\helpers\Url;
                 <hr>
                 <div class="card-link">
                     <i class="fa fa-external-link" aria-hidden="true"></i><a
-                        href="<?= Url::to(['blog/']) ?>"
+                        href="<?= Url::to(['restraunt/']) ?>"
                         class="text-muted-low">Перейти в
-                        блог</a>
+                        заведения</a>
                 </div>
             </div>
         </div>

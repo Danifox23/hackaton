@@ -6,12 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Status */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Статусы', 'url' => ['index']];
+$this->title = $model->address;
+$this->params['breadcrumbs'][] = ['label' => 'Пункты выдачи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="col-md-5 status-view">
+<div class="col-md-4 spot-view">
     <div class="card">
         <div class="header">
             <h4 class="title"><?= Html::encode($this->title) ?></h4>
@@ -33,8 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'name',
-                    'color',
+                    'address',
                 ],
 
                 'options' => ['class' => 'table table-striped']
@@ -43,3 +42,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+

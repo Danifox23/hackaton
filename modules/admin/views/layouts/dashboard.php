@@ -87,24 +87,14 @@ AdminAsset::register($this);
                             <p>Пункты выдачи</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= Url::to(['user/']) ?>">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>Пользователи</p>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="<?= Url::to(['status/']) ?>">
                             <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                             <p>Статусы</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= Url::to(['blog/']) ?>">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <p>Блог</p>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </div>
