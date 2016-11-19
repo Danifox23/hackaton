@@ -35,7 +35,7 @@ class Part extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status_id', 'user_id', 'vol_id', 'date_edit', 'date'], 'required'],
+            [['status_id', 'user_id', 'date_edit', 'date'], 'required'],
             [['status_id', 'user_id', 'vol_id', 'date_edit', 'date'], 'integer'],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

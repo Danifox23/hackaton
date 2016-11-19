@@ -25,13 +25,15 @@ AdminAsset::register($this);
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <?= Html::csrfMetaTags() ?>
 
-        <title>CrtShop | Admin-panel</title>
+        <title>FoodSharing</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
         <meta name="viewport" content="width=device-width"/>
 
         <!--  Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic" rel="stylesheet">
+
+        <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
 
         <?php $this->head() ?>
 
@@ -74,9 +76,9 @@ AdminAsset::register($this);
                         </a>
                     </li>
                     <li>
-                        <a href="<?= Url::to(['category/']) ?>">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
-                            <p>Категории</p>
+                        <a href="<?= Url::to(['bid/']) ?>">
+                            <i class="fa fa-cubes" aria-hidden="true"></i>
+                            <p>Заявки</p>
                         </a>
                     </li>
                     <li>
