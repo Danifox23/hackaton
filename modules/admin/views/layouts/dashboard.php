@@ -63,14 +63,14 @@ AdminAsset::register($this);
                     </li>
                     <li>
                         <a href="<?= Url::to(['volunteer/']) ?>">
-                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <i class="fa fa-child" aria-hidden="true"></i>
                             <p>Волонтёры</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?= Url::to(['product/']) ?>">
-                            <i class="fa fa-cubes" aria-hidden="true"></i>
-                            <p>Товары</p>
+                        <a href="<?= Url::to(['restraunt/']) ?>">
+                            <i class="fa fa-coffee" aria-hidden="true"></i>
+                            <p>Рестораны</p>
                         </a>
                     </li>
                     <li>

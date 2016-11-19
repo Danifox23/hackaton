@@ -8,14 +8,16 @@ use Yii;
  * This is the model class for table "Part".
  *
  * @property integer $id
- * @property integer $product_id
  * @property integer $status_id
  * @property integer $user_id
+ * @property integer $vol_id
+ * @property integer $date_edit
+ * @property integer $date
  *
- * @property User $user
- * @property Product $product
  * @property Status $status
- * @property Product[] $products
+ * @property User $user
+ * @property User $vol
+ * @property Position[] $positions
  */
 class Part extends \yii\db\ActiveRecord
 {
@@ -33,11 +35,11 @@ class Part extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'status_id', 'user_id'], 'required'],
-            [['product_id', 'status_id', 'user_id'], 'integer'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['status_id', 'user_id', 'vol_id', 'date_edit', 'date'], 'required'],
+            [['status_id', 'user_id', 'vol_id', 'date_edit', 'date'], 'integer'],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['vol_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['vol_id' => 'id']],
         ];
     }
 
@@ -48,26 +50,12 @@ class Part extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Product ID',
-            'status_id' => 'Status ID',
+            'status_id' => 'Статус',
             'user_id' => 'User ID',
+            'vol_id' => 'Vol ID',
+            'date_edit' => 'Date Edit',
+            'date' => 'Date',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 
     /**
@@ -81,9 +69,25 @@ class Part extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProducts()
+    public function getUser()
     {
-        return $this->hasMany(Product::className(), ['part_id' => 'id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVol()
+    {
+        return $this->hasOne(User::className(), ['id' => 'vol_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPositions()
+    {
+        return $this->hasMany(Position::className(), ['part_id' => 'id']);
     }
 
     /**

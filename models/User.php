@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\web\IdentityInterface;
+use app\models\Position;
+use app\models\Part;
 
 /**
  * This is the model class for table "User".
@@ -14,7 +16,7 @@ use yii\web\IdentityInterface;
  * @property string $phone
  * @property string $address
  * @property string $password
- * @property integer $role
+ * @property integer $role_id
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -45,8 +47,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'email', 'phone', 'address', 'password', 'role'], 'required'],
-            [['role'], 'integer'],
+            [['name', 'email', 'phone', 'address', 'password', 'role_id'], 'required'],
+            [['role_id'], 'integer'],
             [['name', 'email', 'phone', 'address', 'password'], 'string', 'max' => 255],
         ];
     }
@@ -61,10 +63,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'name' => 'Имя',
             'email' => 'Email',
             'phone' => 'Телефон',
-            'address' => 'Address',
-            'password' => 'Password',
-            'role' => 'Role',
+            'address' => 'Адресс',
+            'password' => 'Пароль',
+            'role_id' => 'Уровень пользователя',
         ];
+    }
+
+    public function getVolParts()
+    {
+        return $this->hasMany(Part::className(), ['vol_id' => 'id']);
+    }
+
+    public function getRestPositions()
+    {
+        return $this->hasMany(Position::className(), ['restraunt_id' => 'id']);
     }
 
     /**

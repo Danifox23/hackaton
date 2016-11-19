@@ -7,7 +7,7 @@ use yii\helpers\StringHelper;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Список волон';
+$this->title = 'Список волонтёров';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

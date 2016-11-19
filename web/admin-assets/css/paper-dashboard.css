@@ -152,7 +152,7 @@ i.product {
 }
 
 /*---------------------- for rating color ---------------------*/
-.rating_lvl {
+.rating_lvl, .order_status {
   padding: 3px 6px;
   border-radius: 3px;
 }
