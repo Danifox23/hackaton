@@ -38,7 +38,7 @@ class CafeController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Spot::find(),
         ]);
-        $model = new 
+        $model = new
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
