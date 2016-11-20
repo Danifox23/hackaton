@@ -27,6 +27,19 @@ class BidController extends \yii\web\Controller
         ]);
     }
 
+    public function actionAdd()
+    {
+        $model = new \yii\base\DynamicModel(['product']);
+        $model->addRule([['address'], 'string', 'max' => 255]);
+        $model->addRule(['quantity'], 'string', ['max' => 128]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // do what you want
+        }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionCreate()
     {
         $model = new User();

@@ -70,7 +70,7 @@ AdminAsset::register($this);
                         </a>
                     </li>
                     <li>
-                        <a href="<?= Url::to(['create/']) ?>">
+                        <a href="<?= Url::to(['bid/add/']) ?>">
                             <i class="fa fa-cutlery" aria-hidden="true"></i>
                             <p>Добавить</p>
                         </a>

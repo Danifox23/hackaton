@@ -12,7 +12,7 @@ use app\models\User;
 use app\models\Spot;
 
 /**
- * Default controller for the `admin` module
+ * Default controller for the `cafe` module
  */
 class DefaultController extends Controller
 {
@@ -37,29 +37,6 @@ class DefaultController extends Controller
             'rest' => $rest,
             'spots' => $spots,
         ]);
-    }
-
-    public function actionCreate()
-    {
-        
-        $id = Yii::$app->request->get('id');
-        $quantity = Yii::$app->request->get('quantity');
-        if (!$quantity) {
-            $quantity = 1;
-        }
-
-        $product = Product::findOne($id);
-        if (empty($product)) {
-            return false;
-        }
-
-        $session = Yii::$app->session;
-        $session->open();
-
-        $cart = new Cart();
-        $cart->addToCart($product, $quantity);
-
-        return true;
     }
 
     public function actionPeriod()
