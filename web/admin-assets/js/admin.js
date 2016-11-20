@@ -98,4 +98,57 @@ $(document).on('click', '.delete-from-main', function () {
     });
 });
 
+$(document).on('click', '.btn-form', function (e) {
+    e.preventDefault();
+    // $('.products-on-main .content').html('<i class="fa fa-circle-o-notch fa-spin fa-fw center-block"></i>');
+
+    $name = $('#product-name').val();
+    $quantity = $('#product-quantity').val();
+
+    $.ajax({
+        type: "POST",
+        url: "web/cafe/bid/add",
+        data:
+        {
+            "name": $name,
+            "quantity": $quantity
+        },
+        cache: false,
+
+        success: function (response) {
+            if (!response) {
+                $.notify({
+                    title: '<strong>Ошибка</strong><br>',
+                    message: "Пришёл пустой либо ложный ответ"
+                }, {
+                    type: 'warning',
+                    delay: 100,
+                    timer: 500
+                });
+            }
+            else {
+                $.notify({
+                    title: '<strong>Готово</strong><br>',
+                    message: "Выбранный пункт успешно удалён!"
+                }, {
+                    type: 'success',
+                    delay: 100,
+                    timer: 500
+                });
+                $('body').html(response);
+            }
+        },
+        error: function (response) {
+            $.notify({
+                title: '<strong>Ошибка</strong><br>',
+                message: "Ошибка сервера!"
+            }, {
+                type: 'danger',
+                delay: 100,
+                timer: 500
+            });
+        }
+    });
+});
+
 $('[data-toggle="tooltip"]').tooltip();

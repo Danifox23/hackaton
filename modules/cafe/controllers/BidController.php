@@ -2,10 +2,12 @@
 
 namespace app\modules\cafe\controllers;
 
+use app\models\Product;
 use app\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
+use yii\base\DynamicModel;
 use app\models\Part;
 
 class BidController extends \yii\web\Controller
@@ -29,15 +31,44 @@ class BidController extends \yii\web\Controller
 
     public function actionAdd()
     {
-        $model = new \yii\base\DynamicModel(['product']);
-        $model->addRule([['address'], 'string', 'max' => 255]);
-        $model->addRule(['quantity'], 'string', ['max' => 128]);
+        $model = new Product();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            // do what you want
+            $name = Yii::$app->request->post('name');
+            $quantity = Yii::$app->request->post('quantity');
+
+            $session = Yii::$app->session;
+            $session->open();
+
+            $_SESSION['product'] = [
+                'quantity' => $quantity,
+                'name' => $name,
+            ];
+
+            echo "<pre>";
+            var_dump($_SESSION['product']);
+            echo "</pre>";
         }
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionAddtest()
+    {
+        return false;
+        $name = Yii::$app->request->post('name');
+        $quantity = Yii::$app->request->post('quantity');
+
+        var_dump(1);
+        $session = Yii::$app->session;
+        $session->open();
+
+        $_SESSION['product'] = [
+            'quantity' => $quantity,
+            'name' => $name,
+        ];
+
+        return $name;
     }
 
     public function actionCreate()

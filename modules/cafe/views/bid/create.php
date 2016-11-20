@@ -11,7 +11,7 @@ $this->title = 'Create Order';
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-6 bid-index">
+<div class="col-md-4 bid-index">
     <div class="card">
         <div class="header">
             <h4 class="title">Добавление заявки</h4>
@@ -19,15 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="content">
             <div class="model-action-buttons">
-                <!--                --><?//= Html::a('Добавить заказ', ['create'], ['class' => 'btn btn-success']) ?>
             </div>
 
             <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'name')->textInput()->label('Название') ?>
+            <?= $form->field($model, 'quantity')->textInput(['maxlength' => true])->label('Кол-во') ?>
 
             <div class="form-group">
-                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <span href="#" class="btn btn-primary btn-form">Добавить</span>
             </div>
 
             <?php ActiveForm::end(); ?>
