@@ -51,14 +51,14 @@ $('.period-picker span').bind('click', function () {
 // $('.delete-from-main').bind('click', function () {
 $(document).on('click', '.delete-from-main', function () {
     // $('.products-on-main .content').html('<i class="fa fa-circle-o-notch fa-spin fa-fw center-block"></i>');
-    $product_id = $(this).data('product-id');
+    $spot_id = $(this).data('spot-id');
 
     $.ajax({
         type: "POST",
-        url: "/admin/default/delete-from-main",
+        url: "/web/admin/default/delete-spot",
         data:
         {
-            "product_id": $product_id
+            "spot_id": $spot_id
         },
         cache: false,
 
@@ -76,13 +76,13 @@ $(document).on('click', '.delete-from-main', function () {
             else {
                 $.notify({
                     title: '<strong>Готово</strong><br>',
-                    message: "Товар больше не показывается на главной странице!"
+                    message: "Выбранный пункт успешно удалён!"
                 }, {
                     type: 'success',
                     delay: 100,
                     timer: 500
                 });
-                $('.products-on-main').html(response);
+                $('.spots').html(response);
             }
         },
         error: function (response) {

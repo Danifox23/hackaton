@@ -4,19 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use app\models\Part;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Order */
+/* @var $model app\models\Part */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Заказы', 'url' => ['index']];
+$this->title = 'Заявка';
+$this->params['breadcrumbs'][] = ['label' => 'Список заявок', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="col-md-4 order-view">
     <div class="card">
         <div class="header">
-            <h4 class="title">Заказ №<?= Html::encode($model->id) ?></h4>
+            <h4 class="title">Заявка №<?= Html::encode($model->id) ?></h4>
             <p class="model-desc"></p>
         </div>
         <div class="content">
@@ -38,14 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute'=>'user_id',
                         'format'=>'raw',
-                        'value'=> $model->user->name .' <span class="text-muted"> ('. $model->user->id .')</span>',
+                        'label' => 'Заведение',
+                        'value'=> $model->user->name,
                     ],
-                    'total',
-                    'quantity',
-                    'name',
-                    'email:email',
-                    'phone',
-                    'address',
+                    [
+                        'attribute'=>'vol_id',
+                        'format'=>'raw',
+                        'label' => 'Исполнитель',
+                        'value'=> \app\models\User::findOne($model->vol_id)->name,
+                    ],
                     [
                         'attribute'=>'date',
                         'format'=>'text',
@@ -57,9 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value'=> date('d-m-Y (H:i:s)',$model->date_edit),
                     ],
                     [
+                        'attribute'=>'spot_id',
+                        'format'=>'text',
+                        'value'=> \app\models\Spot::findOne($model->spot_id)->address,
+                    ],
+                    [
                         'attribute'=>'status_id',
                         'format'=>'raw',
-                        'value'=> '<span class="order-status '. $model->status->color .'">'.$model->status->name.'</span>',
+                        'value'=> '<span class="rating_lvl '. $model->status->color .'">'.$model->status->name.'</span>',
                     ],
                 ],
                 'options' => ['class' => 'table table-striped']
@@ -69,11 +76,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<div class="col-md-8 ">
+<div class="col-md-4 ">
     <div class="card">
         <div class="header">
-            <h4 class="title">Товары в заказе <sup><?= $positions->getCount(); ?></sup></h4>
-            <p class="model-desc"><?= $model->quantity ?> позиций</p>
+            <h4 class="title">Продукты в заявке <sup></sup></h4>
+            <p class="model-desc"> позиций</p>
         </div>
         <div class="content">
             <?= GridView::widget([
@@ -87,50 +94,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'name',
                         'label' => 'Наименование',
-                        'content' => function($data)
-                        {
-                            return '<a href="'. Url::to(['product/view/', 'id' => $data->product_id]) .'">'. $data->name .'</a>';
-                        }
-                    ],
-                    [
-                        'attribute' => 'price',
-                        'label' => 'Цена',
                     ],
                     [
                         'attribute' => 'quantity',
                         'label' => 'Кол-во',
-                    ],
-                    [
-                        'attribute' => 'total',
-                        'label' => 'Итого',
-                    ],
-                    [
-                        'class' => 'yii\grid\ActionColumn',
-                        'header' => 'Действия',
-                        'template' => '{view} {update} {delete}{link}',
-                        'urlCreator' => function ($action, $data) {
-                            return \yii\helpers\Url::to(['product/' . $action, 'id' => $data->id]);
+                        'content' => function ($data) {
+                            return $data->quantity . 'шт.';
                         }
                     ],
-//                    [
-//                        'label' => '',
-//                        'format' => 'raw',
-//                        'value' => function ($data) {
-//                            return Html::a(
-//                                'Изменить',
-//                                '#',
-//                                [
-//                                    'data-target' => '#UpdateProduct',
-//                                    'data-toggle' => 'modal',
-//                                    'class' => 'update-product',
-//                                    'data-product-id' => $data->id,
-//                                ]
-//                            );
-//                        }
-//                    ],
                 ],
             ]); ?>
-
         </div>
     </div>
 </div>

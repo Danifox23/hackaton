@@ -51,8 +51,14 @@ class SpotController extends Controller
      */
     public function actionView($id)
     {
+        $model = Spot::findOne($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getParts()->where(['not', ['status_id' => 3]]),
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'parts' => $dataProvider,
         ]);
     }
 

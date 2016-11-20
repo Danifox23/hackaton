@@ -148,7 +148,7 @@ use yii\helpers\Url;
         <div class="card">
             <div class="header">
                 <h4 class="title">Пункты выдачи</h4>
-                <p class="model-desc">Пункты, где можно получить помощь</p>
+                <p class="model-desc">Пункты, где находятся ваши продукты</p>
             </div>
             <div class="content">
                 <?php if(count($spots)): ?>
@@ -157,7 +157,6 @@ use yii\helpers\Url;
                         <tr>
                             <th>id</th>
                             <th>Адрес</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -165,9 +164,6 @@ use yii\helpers\Url;
                             <tr>
                                 <td><?= $spot->id ?></td>
                                 <td><a href="<?= Url::to(['spot/view/', 'id' => $spot->id]) ?>"><?= $spot->address ?></a></td>
-                                <td data-spot-id="<?= $spot->id ?>" class="table-actions delete-from-main">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

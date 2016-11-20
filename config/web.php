@@ -10,6 +10,9 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'cafe' => [
+            'class' => 'app\modules\cafe\Module',
+        ],
     ],
     'components' => [
         'request' => [

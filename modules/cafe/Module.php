@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\admin;
+namespace app\modules\cafe;
 use yii\filters\AccessControl;
 
 /**

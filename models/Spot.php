@@ -50,4 +50,9 @@ class Spot extends \yii\db\ActiveRecord
     {
         return new SpotQuery(get_called_class());
     }
+
+    public function getParts()
+    {
+        return $this->hasMany(Part::className(), ['spot_id' => 'id']);
+    }
 }

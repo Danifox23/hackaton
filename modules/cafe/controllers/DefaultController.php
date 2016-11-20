@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\cafe\controllers;
 
 use Yii;
 use yii\web\Controller;
@@ -37,6 +37,29 @@ class DefaultController extends Controller
             'rest' => $rest,
             'spots' => $spots,
         ]);
+    }
+
+    public function actionCreate()
+    {
+        
+        $id = Yii::$app->request->get('id');
+        $quantity = Yii::$app->request->get('quantity');
+        if (!$quantity) {
+            $quantity = 1;
+        }
+
+        $product = Product::findOne($id);
+        if (empty($product)) {
+            return false;
+        }
+
+        $session = Yii::$app->session;
+        $session->open();
+
+        $cart = new Cart();
+        $cart->addToCart($product, $quantity);
+
+        return true;
     }
 
     public function actionPeriod()

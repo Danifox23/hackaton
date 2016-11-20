@@ -1,23 +1,26 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\grid\GridView;
-use app\models\Part;
+use yii\widgets\DetailView;
+use yii\helpers\Url;
+
+use app\models\User;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Status */
 
-$this->title = $model->address;
-$this->params['breadcrumbs'][] = ['label' => 'Пункты выдачи', 'url' => ['index']];
+
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Список волонтёров', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="col-md-4 spot-view">
+
+<div class="col-md-5 vol-view">
     <div class="card">
         <div class="header">
             <h4 class="title"><?= Html::encode($this->title) ?></h4>
-            <p class="model-desc"></p>
+            <p class="model-desc">Информация о волонтёре</p>
         </div>
         <div class="content">
             <div class="model-action-buttons">
@@ -35,9 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     'id',
+                    'name',
+                    'email',
+                    'phone',
                     'address',
                 ],
-
                 'options' => ['class' => 'table table-striped']
             ]) ?>
 
@@ -45,10 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<div class="col-md-8">
+<div class="col-md-5">
     <div class="card">
         <div class="header">
-            <h4 class="title">Партии в этом пункте <sup><?= $parts->getCount(); ?></sup></h4>
+            <h4 class="title">Последняя активность <sup><?= $parts->getCount(); ?></sup></h4>
             <p class="model-desc"></p>
         </div>
         <div class="content">
@@ -62,34 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     'id',
                     [
-                        'attribute'=>'user_id',
-                        'format'=>'text',
-                        'label' => 'Отправитель',
-                        'content'=>function($data){
-                            return $data->user->name;
-                        }
-                    ],
-                    [
-                        'attribute'=>'date',
-                        'format'=>'text',
-                        'label' => 'Дата создания',
-                        'content'=>function($data){
-                            return '<span data-toggle="tooltip" title="'. date('H:i:s',$data->date) .'">'. date('d-m-Y',$data->date) .'</span>';
-                        }
-                    ],
-                    [
-                        'attribute'=>'vol_id',
-                        'format'=>'text',
-                        'label' => 'Исполнитель',
-                        'content'=>function($data){
-                            return \app\models\User::findOne($data->vol_id)->name;
-                        }
-                    ],
-                    [
-//                        'attribute'=>'spot_id',
-                        'format'=>'text',
-                        'content'=>function($data){
-                            return '<i class="fa fa-map-marker" aria-hidden="true" data-toggle="tooltip" title="'. \app\models\Spot::findOne($data->spot_id)->address .'"></i>';
+                        'attribute' => 'user_id',
+                        'label' => 'Предоставил',
+                        'content' => function($data)
+                        {
+                            return User::findOne($data->user_id)->name;
                         }
                     ],
                     [
@@ -104,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'header' => 'Действия',
                         'template' => '{view} {update} {delete}{link}',
                         'urlCreator' => function ($action, $data) {
-                            return \yii\helpers\Url::to(['bid/' . $action, 'id' => $data->id]);
+                            return \yii\helpers\Url::to(['product/' . $action, 'id' => $data->id]);
                         }
                     ],
                 ],

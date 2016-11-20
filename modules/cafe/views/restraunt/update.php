@@ -3,18 +3,18 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Order */
+/* @var $model app\models\Product */
 
-$this->title = 'Заказ № ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
+$this->title = 'Редактировать: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 
-<div class="col-md-12 category-view">
+<div class="col-md-5 vol-update">
     <div class="card">
         <div class="header">
-            <h4 class="title"><?= Html::encode($this->title) ?></h4>
+            <h4 class="title"><?= Html::encode($model->name) ?></h4>
             <p class="model-desc"></p>
         </div>
         <div class="content">
