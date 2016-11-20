@@ -7,6 +7,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
 use app\models\Part;
+use app\models\Product;
 
 class BidController extends \yii\web\Controller
 {
@@ -89,18 +90,25 @@ class BidController extends \yii\web\Controller
 
     public function actionAdd()
     {
-        $name = Yii::$app->request->post('name');
-        $quantity = Yii::$app->request->post('quantity');
-
-        var_dump(1);
-        $session = Yii::$app->session;
-        $session->open();
-
-        $_SESSION['product'] = [
-            'quantity' => $quantity,
-            'name' => $name,
-        ];
-
-        return false;
+        $model = new Product();
+//        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//            $name = Yii::$app->request->post('name');
+//            $quantity = Yii::$app->request->post('quantity');
+//
+//            $session = Yii::$app->session;
+//            $session->open();
+//
+//            $_SESSION['product'] = [
+//                'quantity' => $quantity,
+//                'name' => $name,
+//            ];
+//
+//            echo "<pre>";
+//            var_dump($_SESSION['product']);
+//            echo "</pre>";
+//        }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 }
